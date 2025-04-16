@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --spinner-color: #2196f3;
+      --spinner-bg: #e0e0e0;
+      --popup-bg: #f0f0f0;
+      --popup-text: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #111111;
+        --text-color: #ffffff;
+        --spinner-bg: #444444;
+        --popup-bg: #222222;
+        --popup-text: #fff;
+      }
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .loader {
+      border: 10px solid var(--spinner-bg);
+      border-top: 10px solid var(--spinner-color);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--popup-bg);
+      color: var(--popup-text);
+      padding: 32px 48px;
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      font-size: 1.2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .popup.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+</head>
+<body>
+  <div class="loader"></div>
+
+  <div id="popup" class="popup">
+    yahahaha nunguin ya
+  </div>
+
+  <script>
+    // Show the popup after 3 seconds
+    setTimeout(() => {
+      document.querySelector('.loader').style.display = 'none';
+      document.getElementById('popup').classList.add('show');
+    }, 3000);
+  </script>
+</body>
+</html>
